@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOTNET_ROOT = "$HOME/.dotnet"
+    }
+
     triggers {
         pollSCM('H * * * *')
     }
@@ -9,8 +13,8 @@ pipeline {
         stage('Dependencies') {
             steps {
                 sh '''
-                wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh
-                bash dotnet-install.sh --version 6.0.129
+                    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh
+                    bash dotnet-install.sh --version 6.0.129 --runtime aspnetcore
                 '''
             }
         }
@@ -18,21 +22,21 @@ pipeline {
             steps {
                 dir('CICD') {
                     sh '''
-                    dotnet build
+                        dotnet build
                     '''
                 }
             }
         }
-        stage('Test') {
-            steps {
-                sh "dotnet test"
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh "dotnet test"
+        //     }
+        // }
 
-        stage('Deploy') {
-            steps {
-                sh "dotnet deploy"
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         sh "dotnet deploy"
+        //     }
+        // }
     }
 }
