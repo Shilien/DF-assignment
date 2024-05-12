@@ -30,16 +30,19 @@ pipeline {
                 }
             }
         }
-        // stage('Test') {
-        //     steps {
-        //         sh "dotnet test"
-        //     }
-        // }
 
-        // stage('Deploy') {
-        //     steps {
-        //         sh "dotnet deploy"
-        //     }
-        // }
+        stage('Test') {
+            dir('CICD') {
+                steps {
+                    sh "dotnet test"
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh "dotnet run &"
+            }
+        }
     }
 }
