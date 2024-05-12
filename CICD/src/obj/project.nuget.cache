@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "rprcPps0BYzFstaENJfkwaEp41VP/FmyXonqT355p9VcQHkhW7YJNdmySwfrWH/UJlqnvklq2EcU9nqMc5fhaQ==",
+  "success": true,
+  "projectFilePath": "/Users/adrian/Work/test/homework/DF-assignment/CICD/src/Src.csproj",
+  "expectedPackageFiles": [
+    "/Users/adrian/.nuget/packages/microsoft.netcore.app.ref/6.0.29/microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "/Users/adrian/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.29/microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
+    "/Users/adrian/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.29/microsoft.netcore.app.host.osx-arm64.6.0.29.nupkg.sha512"
+  ],
+  "logs": []
+}
