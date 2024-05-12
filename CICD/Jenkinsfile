@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
+                // Run Maven on a Unix agent.
+                sh "dotnet build ."
+            }
+        }
+        stage('Test') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
+                // Run Maven on a Unix agent.
+                sh "dotnet test ."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
+                // Run Maven on a Unix agent.
+                sh "dotnet deploy"
+            }
+        }
+    }
+}
