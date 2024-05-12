@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOTNET_ROOT = "$HOME/.dotnet"
         PATH= "$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
+        DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1
     }
 
     triggers {
