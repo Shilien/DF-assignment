@@ -41,7 +41,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                dir('CICD/srcc') {
+                dir('CICD/src') {
                     sh "dotnet run &"
                 }
             }
