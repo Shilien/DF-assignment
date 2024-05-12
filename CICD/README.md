@@ -1,11 +1,22 @@
-# NUnit 1
+# CICD task
 
-This sample consists of two projects:
-- a simple ASP.NET Core Hello world application 
-- a NUnit test project that uses WebApplicationFactory
+## Requirements
+Create a Jenkinsfile for a dotnet project
+The pipeline should include stages for build, test and deploy.
+Use a sample application or script for demonstration purposes.
+https://github.com/dodyg/practical-aspnetcore/tree/net6.0/projects/testing/nunit-1
 
-The test project uses the `WebApplicationFactory` to start an in-proc instance of the web application. The unit tests will query the web application via an instance of `HttpClient` that skips the wire and queries directly the web application.
+## How to test:
 
-To run the test, go to `tests` folder and run `dotnet test`.
+1. Build and start the jenkins container.
+```
+docker build . -t jenkins-latest
+docker volume create jenkins-data
+docker run -d -p 8080:8080/tcp -v jenkins-data:/var/jenkins_home jenkins-latest
+```
+2. Import the build from the jenkinsfile.
+```
+NewItem -> Pipeline -> Pipeline script from SCM 
+```
 
-Sample made by: [@Kralizek](https://github.com/Kralizek)
+3. Run the build.
