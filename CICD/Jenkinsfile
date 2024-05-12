@@ -14,10 +14,11 @@ pipeline {
             steps {
                 sh '''
                     wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh
-                    bash dotnet-install.sh --version 6.0.129 --runtime aspnetcore
+                    bash dotnet-install.sh --version 6.0.129
                 '''
             }
         }
+        
         stage('Build') {
             steps {
                 dir('CICD') {
