@@ -6,27 +6,32 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Dependencies') {
             steps {
                 sh '''
-                ls
-                pwd
-                dotnet test .
+                wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+                chmod +x ./dotnet-install.sh
+                ./dotnet-install.sh --version latest
                 '''
+            }
+        }
+        stage('Build') {
+            steps {
+                dir('CICD') {
+                    sh '''
+                    dotnet build
+                    '''
+                }
             }
         }
         stage('Test') {
             steps {
-
-                // Run Maven on a Unix agent.
-                sh "dotnet test ."
+                sh "dotnet test"
             }
         }
 
         stage('Deploy') {
             steps {
-
-                // Run Maven on a Unix agent.
                 sh "dotnet deploy"
             }
         }
