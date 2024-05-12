@@ -32,8 +32,8 @@ pipeline {
         }
 
         stage('Test') {
-            dir('CICD') {
-                steps {
+            steps {
+                dir('CICD') {
                     sh "dotnet test"
                 }
             }
@@ -41,7 +41,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh "dotnet run &"
+                dir('CICD') {
+                    sh "dotnet run &"
+                }
             }
         }
     }
