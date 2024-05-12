@@ -35,11 +35,6 @@ variable "ecs_cloudwatch_log_group_name" {
   type        = string
 }
 
-variable "ecs_cluster_id" {
-  description = "The id of the ECS Cluster"
-  type        = string
-}
-
 variable "ecs_security_group" {
   description = "The security group of the ECS Service"
 }

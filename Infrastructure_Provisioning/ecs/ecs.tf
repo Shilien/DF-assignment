@@ -1,5 +1,22 @@
 ################################################################################
-# ECS Task and containter defintions including open telemtry collector sidecar
+# ECS Cluster
+################################################################################
+resource "aws_ecs_cluster" "this" {
+  name = "${var.resource_name}-cluster"
+
+  capacity_providers = [
+  "FARGATE"]
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+
+  tags = var.tags
+}
+
+################################################################################
+# ECS Task and containter defintions
 ################################################################################
 resource "aws_ecs_task_definition" "service_task_definition" {
   family                   = "${var.resource_name}-family"
@@ -54,7 +71,7 @@ resource "aws_ecs_task_definition" "service_task_definition" {
 
 resource "aws_ecs_service" "default" {
   name                               = var.resource_name
-  cluster                            = var.ecs_cluster_id
+  cluster                            = aws_ecs_cluster.this.id
   task_definition                    = aws_ecs_task_definition.service_task_definition.arn
   desired_count                      = var.task_instance_count
   deployment_minimum_healthy_percent = 50
