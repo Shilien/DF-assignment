@@ -29,7 +29,7 @@ module "alb" {
   load_balancer_type = "application"
   vpc_id             = var.vpc_id
   security_groups    = [module.alb_sg.security_group_id]
-  subnets            = var.ecs.alb.internal == true ? module.vpc.private_subnets : module.vpc.public_subnets
+  subnets            = var.private_subnets
 
   http_tcp_listeners = [
     # Forward action is default, either when defined or undefined
@@ -45,7 +45,19 @@ module "alb" {
     }
   ]
 
-  https_listeners = var.zone.create_certificate == true ? local.ecs_alb_https_listener : null
+  https_listeners = [
+    {
+      port            = 443
+      protocol        = "HTTPS"
+      certificate_arn = var.certificate_arn
+      action_type     = "fixed-response"
+
+      fixed_response = {
+        content_type = "text/plain"
+        status_code  = "404"
+      }
+    }
+  ]
 
   tags = var.tags
 }

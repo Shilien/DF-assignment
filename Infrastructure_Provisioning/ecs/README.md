@@ -89,10 +89,11 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb_apigateway_paths"></a> [alb\_apigateway\_paths](#input\_alb\_apigateway\_paths) | The routes defined in the ALB listener rules | `map(any)` | n/a | yes |
 | <a name="input_alb_listener_arn"></a> [alb\_listener\_arn](#input\_alb\_listener\_arn) | n/a | `string` | n/a | yes |
+| <a name="input_alb_subnets"></a> [alb\_subnets](#input\_alb\_subnets) | The subnetes where the alb is created | `any` | n/a | yes |
 | <a name="input_aws_ecr_account"></a> [aws\_ecr\_account](#input\_aws\_ecr\_account) | AWS ECR account number | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | `"eu-west-1"` | no |
+| <a name="input_certificate_arn"></a> [certificate\_arn](#input\_certificate\_arn) | The ACM certificate ARN. | `string` | n/a | yes |
 | <a name="input_ecs_cloudwatch_log_group_name"></a> [ecs\_cloudwatch\_log\_group\_name](#input\_ecs\_cloudwatch\_log\_group\_name) | Cloudwatch log group for ecs task | `string` | n/a | yes |
 | <a name="input_ecs_extra_env_secrets"></a> [ecs\_extra\_env\_secrets](#input\_ecs\_extra\_env\_secrets) | List of environment secrets. https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html | `list(any)` | `[]` | no |
 | <a name="input_ecs_extra_env_variables"></a> [ecs\_extra\_env\_variables](#input\_ecs\_extra\_env\_variables) | List of environment variables used in the ecs deployment. | `list(any)` | `[]` | no |

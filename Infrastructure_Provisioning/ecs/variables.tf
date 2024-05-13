@@ -1,3 +1,12 @@
+variable "certificate_arn" {
+  type        = string
+  description = "The ACM certificate ARN."
+}
+
+variable "alb_subnets" {
+  description = "The subnetes where the alb is created"
+}
+
 variable "resource_name" {
   description = "Api resource name"
   type        = string
@@ -46,11 +55,6 @@ variable "ecs_subnet_ids" {
 variable "ecs_task_access_policy" {
   description = "IAM policy for the ECS task"
 
-}
-
-variable "alb_apigateway_paths" {
-  type        = map(any)
-  description = "The routes defined in the ALB listener rules"
 }
 
 variable "alb_listener_arn" {
